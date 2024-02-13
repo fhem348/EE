@@ -1,0 +1,29 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mysql"
+    url      = env("DATABASE_URL")
+}
+
+model resume {
+    resumeId Int @id @default(autoincrement())
+    title    String? @db.VarChar(255)
+    content  String? @db.VarChar(255)
+    userId   Int?
+    status   String? @db.VarChar(255)
+    createAt DateTime? @db.DateTime(0)
+    user     user? @relation(fields: [userId], references: [userId],onDelete: Restrict, onUpdate: Restrict, map:"FK_resume_userId_user_userId")
+
+    @@index([userId],map:"FK_resume_userId_user_userId")
+}
+
+model user {
+    userId    Int @id @default(autoincrement())
+    email     String? @db.VarChar(255)
+    password  String? @db.VarChar(255)
+    name      String? @db.VarChar(255)
+    createAt  DateTime? @db.DateTime(0)
+    resume    resume[]
+}
