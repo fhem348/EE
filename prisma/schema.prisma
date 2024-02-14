@@ -18,6 +18,8 @@ model User {
   age Int @map("age")
   gender String @map("gender")
   image String @map("image")
+  createdAt DateTime @default(now()) @map("createdAt")
+  updatedAt DateTime @updatedAt @map("updatedAt")
 
   post Post[]
 

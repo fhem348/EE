@@ -13,5 +13,5 @@ app.use('/users', userRouter);
 app.use('/posts', postRouter);
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
+    console.log(`서버가 열립니다. ${port}`);
 });
